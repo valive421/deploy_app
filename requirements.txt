@@ -14,4 +14,5 @@ celery
 redis
 stun
 daphne
+gunicorn
 
