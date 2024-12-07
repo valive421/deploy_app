@@ -16,4 +16,4 @@ stun
 daphne
 gunicorn
 dj_database_url
-
+django-cors-headers
