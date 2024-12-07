@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'data_78as',  # Your database name
         'USER': 'data_78as_user',
         'PASSWORD': 'Hagl4U5SZcMohAlVbptDa5S7m504aTkc',
-        'HOST': 'dpg-cta2l756l47c73bgv9m0-a.oregon-postgres.render.com',
+        'HOST': 'postgresql://data_78as_user:Hagl4U5SZcMohAlVbptDa5S7m504aTkc@dpg-cta2l756l47c73bgv9m0-a/data_78as',
         'PORT': '5432',
     }
 }
