@@ -149,14 +149,17 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazo
 
 # Tell Django to use S3 to store static files
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Static URL
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 # Optionally, use this to define the S3 location of the media files (if you're storing media as well)
 AWS_DEFAULT_ACL = None  # Avoid using public ACLs for better security
 
