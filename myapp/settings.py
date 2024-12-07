@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "chat",
     "channels",
     "accounts",
+    'storages',
     
 ]
 
@@ -78,12 +79,24 @@ WSGI_APPLICATION = "myapp.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+import dj_database_url
+import os
+
+
+import os
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'data_78as',  # Your database name
+        'USER': 'data_78as_user',
+        'PASSWORD': 'Hagl4U5SZcMohAlVbptDa5S7m504aTkc',
+        'HOST': 'dpg-cta2l756l47c73bgv9m0-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
+
+
 
 
 # Password validation
@@ -119,8 +132,34 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+import os
+from dotenv import load_dotenv
 
-STATIC_URL = "static/"
+load_dotenv()  # Load environment variables from .env file
+
+# AWS S3 configuration
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')  # Fetch from .env file
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')  # Fetch from .env file
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')  # Fetch from .env file
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')  # Fetch from .env file
+print(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME)
+
+# Static files settings
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+
+# Tell Django to use S3 to store static files
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Static URL
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Optionally, use this to define the S3 location of the media files (if you're storing media as well)
+AWS_DEFAULT_ACL = None  # Avoid using public ACLs for better security
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -128,8 +167,23 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ASGI_APPLICATION = "myapp.asgi.application"
+
+
+import os
+from urllib.parse import urlparse
+
+# Get the Redis URL from an environment variable (or use the URL directly if needed)
+redis_url = "redis://red-cta2978gph6c73ej1oeg:6379"
+
+# Parse the URL
+parsed_url = urlparse(redis_url)
+
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(parsed_url.hostname, parsed_url.port)],  # Use the hostname and port
+              # Add password if necessary
+        },
+    },
 }
