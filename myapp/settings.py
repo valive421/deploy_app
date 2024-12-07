@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     "channels",
     "accounts",
     'storages',
+    'corsheaders'
     
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -190,3 +192,24 @@ CHANNEL_LAYERS = {
         },
     },
 }
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins for testing. Replace with specific origins in production.
+
+# CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    'https://deploy-app-9vhi.onrender.com',  # Replace with your domain
+]
+
+# Optionally, configure allowed methods for CORS
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+
+# If you're using cookies for authentication, allow credentials
+CORS_ALLOW_CREDENTIALS = True
+
