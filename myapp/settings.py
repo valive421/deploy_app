@@ -138,10 +138,10 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 # AWS S3 configuration
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')  # Fetch from .env file
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')  # Fetch from .env file
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')  # Fetch from .env file
-AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')  # Fetch from .env file
+AWS_ACCESS_KEY_ID = os.getenv('/etc/secrets/AWS_ACCESS_KEY_ID')  # Fetch from .env file
+AWS_SECRET_ACCESS_KEY = os.getenv('/etc/secrets/AWS_SECRET_ACCESS_KEY')  # Fetch from .env file
+AWS_STORAGE_BUCKET_NAME = os.getenv('/etc/secrets/AWS_STORAGE_BUCKET_NAME')  # Fetch from .env file
+AWS_S3_REGION_NAME = os.getenv('/etc/secrets/AWS_S3_REGION_NAME')  # Fetch from .env file
 print(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME)
 
 # Static files settings
