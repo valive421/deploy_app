@@ -15,4 +15,5 @@ redis
 stun
 daphne
 gunicorn
+dj_database_url
 
