@@ -27,32 +27,3 @@
     <script src="{% static 'accounts/js/script.js' %}"></script>
 </body>
 </html>
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static 'static/accounts/css/style1.css' %}">
-</head>
-<body>
-    <!-- Navigation -->
-    <div class="navbar">
-        <a href="{% url 'signup' %}">Sign Up</a>
-        <a href="{% url 'login' %}">Log In</a>
-    </div>
-
-    <!-- Content -->
-    <div class="container">
-        <h1>Welcome to the Authentication </h1>
-        <p>This page helps you log in, create an account, and explore features.</p>
-        <a href="{% url 'signup' %}" class="button">Get Started</a>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2024 TalkHUb. All Rights Reserved.</p>
-    </div>
-
-    <script src="{% static 'static/accounts/js/script.js' %}"></script>
-</body>
-</html>
