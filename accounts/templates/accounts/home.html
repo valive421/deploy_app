@@ -6,19 +6,46 @@
     <link rel="stylesheet" href="{% static 'static/accounts/css/style1.css' %}">
 </head>
 <body>
-    <!-- Navigation -->
-    <div class="navbar">
-        <a href="{% url 'signup' %}">Sign Up</a>
-        <a href="{% url 'login' %}">Log In</a>
-    </div>
-
-    <!-- Content -->
+    <!-- Navbar Start -->
+<nav class="navbar">
     <div class="container">
-        <h1>Welcome to the Authentication </h1>
-        <p>This page helps you log in, create an account, and explore features.</p>
-        <a href="{% url 'signup' %}" class="button">Get Started</a>
+        <!-- Circle Logo -->
+        <div style="display: flex; align-items: center;">
+            <div class="circle"></div>
+            <a href="/" class="name">TalkHub</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+        </ul>
     </div>
+</nav>
+<!-- Navbar End -->
 
+<!-- Main Content Start -->
+<main>
+    <div class="content-row">
+        <div class="Quotes">
+            Connect, Play, Improve:<br>
+            Build Social Confidence<br>
+            Through Games!<br>
+            <button class="start-button" onclick="startGame()">Start Game</button>
+        </div>
+        <div class="image">
+            <img src="img1.png" alt="Sample Image">
+        </div>
+    </div>
+    
+   
+</main>
+<!-- Main Content End -->
+ 
+
+<script>
+    function startGame() {
+        alert("Game Starting... Connect with a random player!");
+        // Here you can implement your logic to start the game
+    }
     <!-- Footer -->
     <div class="footer">
         <p>&copy; 2024 TalkHUb. All Rights Reserved.</p>
